@@ -10,13 +10,15 @@
 	</parent>
 	<groupId>com.wanjala</groupId>
 	<artifactId>gcp-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>gcp-demo</name>
 	<description>Demo project for Spring Boot + GCP</description>
 	<properties>
 		<spring-cloud-gcp.version>2.0.4</spring-cloud-gcp.version>
 		<spring-cloud.version>2020.0.3</spring-cloud.version>
-		<java.version>16</java.version>
+		<java.version>11</java.version>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -123,6 +125,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>2.8.0</version>
+				<configuration>
+					<to>
+						<image>gcr.io/aaron-spring-gcp-demo/jib-demo</image>
+					</to>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
