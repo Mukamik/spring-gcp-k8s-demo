@@ -124,7 +124,7 @@
 				<version>2.8.0</version>
 				<configuration>
 					<from>
-						<image>openjdk:17</image>
+						<image>docker.io/library/openjdk:17</image>
 					</from>
 					<to>
 						<image>gcr.io/aaron-spring-gcp-demo/jib-demo</image>
