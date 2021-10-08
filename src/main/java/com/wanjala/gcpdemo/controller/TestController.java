@@ -1,5 +1,6 @@
 package com.wanjala.gcpdemo.controller;
 
+import com.wanjala.gcpdemo.models.DemoRecord;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/test")
 public class TestController {
 
-  @GetMapping
-  public ResponseEntity<String> okay() {
-    System.out.println("Request received at /test");
-    return new ResponseEntity<>("Request received - " + UUID.randomUUID(), HttpStatus.OK);
+  @GetMapping("/okay")
+  public ResponseEntity<DemoRecord> okay() {
+    System.out.println("Replying with test record:");
+    return new ResponseEntity<>(new DemoRecord(1, "Test record", UUID.randomUUID()), HttpStatus.OK);
   }
 }
