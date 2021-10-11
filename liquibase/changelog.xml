@@ -1,0 +1,27 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+  http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+
+  <changeSet author="aaron" id="1::createTableforBooks">
+    <createTable tableName="BOOKS">
+      <column name="TITLE" type="VARCHAR"/>
+      <column name="PRICE" type="NUMBER(*, 0)"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="aaron" id="2::populateBooks">
+    <insert tableName="BOOKS">
+      <column name="TITLE" value="A Storm of Swords"/>
+      <column name="PRICE" value="20"/>
+    </insert>
+    <insert tableName="BOOKS">
+      <column name="TITLE" value="A Feast for Crows"/>
+      <column name="PRICE" value="25"/>
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>

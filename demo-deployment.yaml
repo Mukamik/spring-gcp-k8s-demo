@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: demo-app
+  template:
+    metadata:
+      labels:
+        run: demo-app
+    spec:
+      containers:
+      - name: demo-app
+        image: gcr.io/aaron-spring-gcp-demo/jib-demo:latest
+        ports:
+        - containerPort: 8080
+      - name: demo-mysql
+        image: mysql:5.7.34
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: strong-pass
+      initContainers:
+      - name: demo-liquibase
+        image: gcr.io/aaron-spring-gcp-demo/demo-liquibase
