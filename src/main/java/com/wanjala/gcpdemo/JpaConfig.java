@@ -37,10 +37,10 @@ public class JpaConfig {
   @Bean
   public DataSource dataSource() {
     final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("spring.datastore.driver-class-name")));
-    dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("spring.datastore.url")));
-    dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("spring.datastore.username")));
-    dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("spring.datastore.password")));
+    dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("SPRING_DATASOURCE_DRIVER_CLASS_NAME")));
+    dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("SPRING_DATASOURCE_URL")));
+    dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("SPRING_DATASOURCE_USERNAME")));
+    dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("SPRING_DATASOURCE_PASSWORD")));
     return dataSource;
   }
   
