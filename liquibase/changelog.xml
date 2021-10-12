@@ -11,7 +11,7 @@ http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbch
       <column name="ID" type="BIGINT" autoIncrement="true">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="TITLE" type="VARCHAR"/>
+      <column name="TITLE" type="VARCHAR(255)"/>
       <column name="PRICE" type="NUMERIC(10,2)"/>
     </createTable>
   </changeSet>
