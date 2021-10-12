@@ -55,8 +55,8 @@ public class PersistenceConfig {
 
   final Properties additionalProperties() {
     final Properties hibernateProperties = new Properties();
-    hibernateProperties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(env.getProperty("HIBERNATE.HBM2DDL.AUTO")));
-    hibernateProperties.setProperty("hibernate.dialect", Preconditions.checkNotNull(env.getProperty("HIBERNATE.DIALECT")));
+    hibernateProperties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(env.getProperty("HIBERNATE_HBM2DDL_AUTO")));
+    hibernateProperties.setProperty("hibernate.dialect", Preconditions.checkNotNull(env.getProperty("HIBERNATE_DIALECT")));
 
     return hibernateProperties;
   }
