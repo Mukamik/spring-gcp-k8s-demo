@@ -12,7 +12,7 @@ http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbch
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="TITLE" type="VARCHAR"/>
-      <column name="PRICE" type="NUMERIC"/>
+      <column name="PRICE" type="NUMERIC(10,2)"/>
     </createTable>
   </changeSet>
 
