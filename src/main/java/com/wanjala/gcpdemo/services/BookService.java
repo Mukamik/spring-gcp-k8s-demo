@@ -14,6 +14,6 @@ public class BookService {
 
 
   public List<Book> findAllBooksInOrderOfPriceDescending() {
-    return bookRepository.findAllOrderByPriceDesc();
+    return bookRepository.findAllByOrderByPriceDesc();
   }
 }
