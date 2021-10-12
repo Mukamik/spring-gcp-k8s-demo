@@ -1,6 +1,6 @@
-package com.wanjala.gcpdemo.repository;
+package com.wanjala.gcpdemo.repositories;
 
-import com.wanjala.gcpdemo.entity.Book;
+import com.wanjala.gcpdemo.models.Book;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

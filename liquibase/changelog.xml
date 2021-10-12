@@ -7,7 +7,7 @@ http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbch
   http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
   <changeSet author="aaron" id="1::createTableBook">
-    <createTable tableName="BOOK">
+    <createTable tableName="BOOK" schemaName="book_store">
       <column name="ID" type="BIGINT" autoIncrement="true">
         <constraints primaryKey="true" nullable="false"/>
       </column>
@@ -17,11 +17,11 @@ http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbch
   </changeSet>
 
   <changeSet author="aaron" id="2::populateBook">
-    <insert tableName="BOOK">
+    <insert tableName="BOOK" schemaName="book_store">
       <column name="TITLE" value="A Storm of Swords"/>
       <column name="PRICE" value="20"/>
     </insert>
-    <insert tableName="BOOK">
+    <insert tableName="BOOK" schemaName="book_store">
       <column name="TITLE" value="A Feast for Crows"/>
       <column name="PRICE" value="25"/>
     </insert>
