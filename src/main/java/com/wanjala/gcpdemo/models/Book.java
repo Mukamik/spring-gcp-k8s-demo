@@ -1,12 +1,21 @@
 package com.wanjala.gcpdemo.models;
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
 @Table(name="BOOK", schema = "book_store")
 public class Book {
 
@@ -15,43 +24,9 @@ public class Book {
   private Long id;
 
   @Column(name="PRICE")
-  private Long price;
+  private BigDecimal price;
 
   @Column(name="TITLE")
   private String title;
 
-  public Book() {
-    super();
-  }
-
-  public Book(Long id, Long price, String title){
-    super();
-    this.id = id;
-    this.price = price;
-    this.title = title;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Long getPrice() {
-    return price;
-  }
-
-  public void setPrice(Long price) {
-    this.price = price;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
 }
