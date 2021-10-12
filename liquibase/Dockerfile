@@ -1,3 +1,4 @@
 FROM liquibase/liquibase
-COPY changelog.xml /
-CMD ["sh", "-c", "docker-entrypoint.sh --url=${SPRING_DATASOURCE_URL} --username=${SPRING_DATASOURCE_USERNAME} --password=${SPRING_DATASOURCE_PASSWORD} -v ~/.m2/repository/mysql/mysql-connector-java/8.0.26:/liquibase/classpath --classpath=/liquibase/classpath --changeLogFile=changelog.xml update"]
+COPY changelog.xml /liquibase/changelog/
+COPY mysql-connector-java-8.0.26.jar /liquibase/classpath/
+CMD ["sh", "-c", "docker-entrypoint.sh --url=${SPRING_DATASOURCE_URL} --username=${SPRING_DATASOURCE_USERNAME} --password=${SPRING_DATASOURCE_PASSWORD} --classpath=/liquibase/classpath/mysql-connector-java-8.0.26.jar --changelog-file=changelog/changelog.xml --driver=com.mysql.jdbc.Driver update"]
