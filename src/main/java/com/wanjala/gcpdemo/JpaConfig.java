@@ -13,8 +13,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@ComponentScan("com.wanjala.gcpdemo.repository")
-@EnableJpaRepositories
+@ComponentScan("com.wanjala.gcpdemo")
+@EnableJpaRepositories("com.wanjala.gcpdemo.repository")
 public class JpaConfig {
 
   @Autowired
@@ -25,7 +25,7 @@ public class JpaConfig {
   }
 
   @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(dataSource());
     em.setPackagesToScan("com.wanjala.gcpdemo.repository");
@@ -43,6 +43,6 @@ public class JpaConfig {
     dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("SPRING_DATASOURCE_PASSWORD")));
     return dataSource;
   }
-  
+
 
 }
