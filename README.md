@@ -1,6 +1,6 @@
-##How to deploy this sample app on Google Cloud Shell
+## How to deploy this sample app on Google Cloud Shell
 
-###Enable the apis
+### Enable the apis
     gcloud services enable \
       cloudapis.googleapis.com \
       container.googleapis.com \
@@ -10,7 +10,7 @@
       vpcaccess.googleapis.com
 
 
-###Create the k8s cluster (Warning, can take a few minutes)
+### Create the k8s cluster (Warning, can take a few minutes)
 
     gcloud container clusters create kube-java \
       --zone=us-central1-c \
@@ -18,26 +18,26 @@
       --create-subnetwork=name=kube-java-springboot \
       --scopes=cloud-platform
 
-###Create the clusterrole binding
+### Create the clusterrole binding
     kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole=cluster-admin \
     --user=$(gcloud config get-value core/account)
 
 
-###To build the liquibase docker image (run from the liquibase folder) then tag the new build
+### To build the liquibase docker image (run from the liquibase folder) then tag the new build
     cp ~/.m2/repository/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar .
     docker build -t demo-liquibase .
     docker tag demo-liquibase gcr.io/$PROJECT_ID/demo-liquibase
     docker push gcr.io/$PROJECT_ID/demo-liquibase
 
-###To push it to container registry
+### To push it to container registry
     docker push gcr.io/$PROJECT_ID/demo-liquibase
   
-######If the above fails, try running this before retrying:
+### # ## If the above fails, try running this before retrying:
     gcloud auth login
     gcloud auth configure-docker
 
-###Create the db configmap
+### Create the db configmap
     declare dbpw=$(dd bs=24 count=1 if=/dev/urandom status=none | base64 | tr +/ _.)
 
     cat <<EOF> gcp-springboot-mysql-config.yaml
@@ -54,21 +54,21 @@
     EOF
 
 
-###Creating an address and VPC connection (pre-req for creating database)
+### Creating an address and VPC connection (pre-req for creating database)
     gcloud compute addresses create gcp-springboot \
     --global \
     --purpose=VPC_PEERING \
     --prefix-length=16 \
     --network=default
-####Warning this one can take a minute
+### # Warning this one can take a minute
     gcloud services vpc-peerings connect \
     --ranges=gcp-springboot \
     --network=default
 
-###Creating the DB instance
+### Creating the DB instance
   List of versions: https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/SqlDatabaseVersion
 
-####This takes quite a while, around 10 minutes
+### # This takes quite a while, around 10 minutes
 
     declare operation=$(gcloud beta sql instances create gcp-springboot \
     --database-version=MYSQL_5_7 \
@@ -81,7 +81,7 @@
     --format='value(name)')
 
 
-####Once that's done, copy the IP into the config file
+### # Once that's done, copy the IP into the config file
     declare dbip=$(gcloud sql instances describe gcp-springboot \
     --format='value(ipAddresses.ipAddress)')
     
@@ -89,11 +89,11 @@
       SPRING_DATASOURCE_URL: jdbc:mysql://$dbip/book_store?createDatabaseIfNotExist=true
     EOF
 
-###Apply the configmap
+### Apply the configmap
     kubectl apply -f ./gcp-springboot-mysql-config.yaml
 
 
-###Build image and deploy app
+### Build image and deploy app
     export PROJECT_ID=$(gcloud config list --format 'value(core.project)')
     export APP_NAME=jib-demo
 
@@ -174,7 +174,7 @@
     EOF
 
 
-###Create the load balancer to expose it to the public
+### Create the load balancer to expose it to the public
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
     kind: Service
@@ -190,14 +190,14 @@
         run: jib-demo
     EOF
 
-###Wait for the loudbalancer to have an IP
+### Wait for the loudbalancer to have an IP
     until [ -n "$(kubectl get svc jib-demo-loadbalancer \
     -o jsonpath='{.status.loadBalancer.ingress[0].ip}')" ]; do
     sleep 10
     done
 
 
-###Retrieve the IP and curl to it
+### Retrieve the IP and curl to it
     declare ip=$(kubectl get service jib-demo-loadbalancer \
     -o jsonpath="{.status.loadBalancer.ingress[*].ip}")
     
