@@ -33,7 +33,7 @@
 ### To push it to container registry
     docker push gcr.io/$PROJECT_ID/demo-liquibase
   
-### # ## If the above fails, try running this before retrying:
+###### If the above fails, try running this before retrying:
     gcloud auth login
     gcloud auth configure-docker
 
@@ -60,7 +60,7 @@
     --purpose=VPC_PEERING \
     --prefix-length=16 \
     --network=default
-### # Warning this one can take a minute
+####  Warning this one can take a minute
     gcloud services vpc-peerings connect \
     --ranges=gcp-springboot \
     --network=default
@@ -68,7 +68,7 @@
 ### Creating the DB instance
   List of versions: https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/SqlDatabaseVersion
 
-### # This takes quite a while, around 10 minutes
+####  This takes quite a while, around 10 minutes
 
     declare operation=$(gcloud beta sql instances create gcp-springboot \
     --database-version=MYSQL_5_7 \
@@ -81,7 +81,7 @@
     --format='value(name)')
 
 
-### # Once that's done, copy the IP into the config file
+####  Once that's done, copy the IP into the config file
     declare dbip=$(gcloud sql instances describe gcp-springboot \
     --format='value(ipAddresses.ipAddress)')
     
