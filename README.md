@@ -1,4 +1,4 @@
-###To build the graal image (and skip tests)
+### To build the graal image (and skip tests)
 
     export PROJECT_ID=$(gcloud config list --format 'value(core.project)')
     
@@ -6,7 +6,7 @@
     
     docker push gcr.io/$PROJECT_ID/spring-boot-graal-demo
 
-###Create the graal deployment
+### Create the graal deployment
     export PROJECT_ID=$(gcloud config list --format 'value(core.project)')
 
     cat <<EOF | kubectl apply -f -
@@ -32,7 +32,7 @@
     EOF
 
 
-###To check the logs for the graal deployment
+### To check the logs for the graal deployment
     kubectl logs -l run=spring-boot-graal-demo
 
-####Compare the startup time to that of the main branch (2-5 seconds typically) 
+#### Compare the startup time to that of the main branch (2-5 seconds typically) 
