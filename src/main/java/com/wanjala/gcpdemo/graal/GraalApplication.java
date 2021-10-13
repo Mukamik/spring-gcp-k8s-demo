@@ -1,13 +1,13 @@
-package com.wanjala.gcpdemo;
+package com.wanjala.gcpdemo.graal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GcpDemoApplication {
+public class GraalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GcpDemoApplication.class, args);
+		SpringApplication.run(GraalApplication.class, args);
 	}
 
 }
