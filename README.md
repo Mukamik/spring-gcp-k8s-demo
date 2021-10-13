@@ -26,9 +26,9 @@
         spec:
           containers:
           - name: spring-boot-graal-demo
-          image: gcr.io/$PROJECT_ID/spring-boot-graal-demo
-          ports:
-          - containerPort: 8080
+            image: gcr.io/$PROJECT_ID/spring-boot-graal-demo
+            ports:
+            - containerPort: 8080
     EOF
 
 
